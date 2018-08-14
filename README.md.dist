@@ -1,4 +1,4 @@
-Jasny {{library}}
+Jasny {{name}}
 ===
 
 [![Build Status](https://travis-ci.org/jasny/{{library}}.svg?branch=master)](https://travis-ci.org/jasny/{{library}})
@@ -9,6 +9,7 @@ _SensioLabsInsight_
 [![Packagist Stable Version](https://img.shields.io/packagist/v/jasny/{{library}}.svg)](https://packagist.org/packages/jasny/{{library}})
 [![Packagist License](https://img.shields.io/packagist/l/jasny/{{library}}.svg)](https://packagist.org/packages/jasny/{{library}})
 
+{{ description }}
 
 Installation
 ---

@@ -3,8 +3,12 @@ REPO_NAME=$(pwd | xargs basename)
 SCRUTINIZER_ORGANIZATION=jasny
 SCRUTINIZER_GLOBAL_CONFIG=9fc4e5aa-b4a6-4b2b-b698-9a17549e1ddc
 
+echo -n "Repository description: " && read REPO_DESCRIPTION
+
 mv README.md.dist README.md
 sed -i 's~{{library}}~'$REPO_NAME'~' README.md
+sed -i 's~{{name}}~'$(echo $REPO_NAME | sed -r 's/-/ /g')'~' README.md
+sed -i 's~{{description}}~'$REPO_DESCRIPTION'~' README.md
 sed -i 's~jasny/library~jasny/'$REPO_NAME'~' composer.json
 sed -i 's~Jasny\\Library~Jasny\\'$(echo $REPO_NAME | sed -r 's/(^|-)(\w)/\U\2/g')'~' composer.json
 
@@ -20,7 +24,8 @@ cp vendor/jasny/php-code-quality/bettercodehub.yml.dist ./.bettercodehub.yml
 
 git add .
 git commit -a -m "Initial commit"
-git push
+git remote show origin 2> /dev/null || hub create -d "$REPO_DESCRIPTION"
+git push -u origin master
 
 # Travis
 command -v travis || gem install travis --no-rdoc --no-ri
