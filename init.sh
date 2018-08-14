@@ -1,5 +1,7 @@
 REPO_NAME=$(pwd | xargs basename)
 
+OPEN=$(command -v xdg-open && echo 'xdg-open' || echo 'open')
+
 SCRUTINIZER_ORGANIZATION=jasny
 SCRUTINIZER_GLOBAL_CONFIG=9fc4e5aa-b4a6-4b2b-b698-9a17549e1ddc
 
@@ -28,7 +30,6 @@ git remote show origin 2> /dev/null || hub create -d "$REPO_DESCRIPTION"
 git push -u origin master
 
 # Travis
-command -v travis || gem install travis --no-rdoc --no-ri
 travis sync && travis enable
 
 # Scrutinizer
@@ -41,12 +42,11 @@ else
 fi
 
 # TODO use sensiolabs API or CLI
-xdg-open https://insight.sensiolabs.com/projects/new/github
+$OPEN https://insight.sensiolabs.com/projects/new/github
 
 # Better code hub doesn't have an API
 echo "Enable BetterCodeHub via https://bettercodehub.com/repositories"
 
 # Edit README
-EDIT=$(command -v xdg-open && echo 'xdg-open' || echo 'open')
-$EDIT README.md
+$OPEN README.md
 
