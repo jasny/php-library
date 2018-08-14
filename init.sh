@@ -17,7 +17,6 @@ sed -i 's~Jasny\\Library~Jasny\\'$(echo $REPO_NAME | sed -r 's/(^|-)(\w)/\U\2/g'
 mkdir -p src tests
 composer install
 
-cp vendor/jasny/php-code-quality/.gitignore .
 cp vendor/jasny/php-code-quality/phpunit.xml.dist .
 cp vendor/jasny/php-code-quality/phpcs.xml.dist ./phpcs.xml
 cp vendor/jasny/php-code-quality/phpstan.neon.dist ./phpstan.neon
