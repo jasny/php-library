@@ -9,7 +9,7 @@ _SensioLabsInsight_
 [![Packagist Stable Version](https://img.shields.io/packagist/v/jasny/{{library}}.svg)](https://packagist.org/packages/jasny/{{library}})
 [![Packagist License](https://img.shields.io/packagist/l/jasny/{{library}}.svg)](https://packagist.org/packages/jasny/{{library}})
 
-{{ description }}
+{{description}}
 
 Installation
 ---
