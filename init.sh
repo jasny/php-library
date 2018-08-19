@@ -36,14 +36,11 @@ travis enable --no-interactive
 # Scrutinizer
 if [ -n "$SCRUTINIZER_ACCESS_TOKEN" ] ; then
   curl --header "Content-Type: application/json" --request POST --fail --silent --show-error \
-    --data "{\"name\":\"jasny/$REPO_NAME\",\"organization\":\"$SCRUTINIZER_ORGANIZATION\",\"global_config\":\"$SCRUTINIZER_GLOBAL_CONFIG\"}" \
+    --data "{\"name\":\"jasny/$LIBRARY\",\"organization\":\"$SCRUTINIZER_ORGANIZATION\",\"global_config\":\"$SCRUTINIZER_GLOBAL_CONFIG\"}" \
     https://scrutinizer-ci.com/api/repositories/g?access_token="$SCRUTINIZER_ACCESS_TOKEN"
 else
   echo "Skipping scrutinizer: access token not configured"
 fi
-
-# TODO use sensiolabs API or CLI
-$OPEN https://insight.sensiolabs.com/projects/new/github
 
 # Better code hub doesn't have an API
 $OPEN https://bettercodehub.com/repositories
