@@ -9,11 +9,11 @@ SCRUTINIZER_GLOBAL_CONFIG=9fc4e5aa-b4a6-4b2b-b698-9a17549e1ddc
 echo -n "Repository description: " && read LIBRARY_DESCRIPTION
 
 mv README.md.dist README.md
-sed -i "s~{{library}}~$LIBRARY~" README.md
-sed -i "s~{{name}}~$LIBRARY_NAME~" README.md
-sed -i "s~{{description}}~$LIBRARY_DESCRIPTION~" README.md
-sed -i "s~jasny/library~jasny/$LIBRARY~" composer.json
-sed -i 's~Jasny\\\\Library~Jasny\\\\'$(echo $LIBRARY | sed -r 's/(^|-)(\w)/\U\2/g')'~' composer.json
+sed -i "s~{{library}}~$LIBRARY~g" README.md
+sed -i "s~{{name}}~$LIBRARY_NAME~g" README.md
+sed -i "s~{{description}}~$LIBRARY_DESCRIPTION~g" README.md
+sed -i "s~jasny/library~jasny/$LIBRARY~g" composer.json
+sed -i 's~Jasny\\\\Library~Jasny\\\\'$(echo $LIBRARY | sed -r 's/(^|-)(\w)/\U\2/g')'~g' composer.json
 
 mkdir -p src tests
 composer install
