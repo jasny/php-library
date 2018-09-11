@@ -9,5 +9,5 @@ use it, fork and modify init.sh._
 Usage
 ---
 
-    composer create-project jasny/library -s dev --remove-vcs
+    composer create-project jasny/library -s dev --remove-vcs LIBRARY_NAME
 
