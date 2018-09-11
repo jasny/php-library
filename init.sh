@@ -14,6 +14,7 @@ sed -i "s~{{name}}~$LIBRARY_NAME~g" README.md
 sed -i "s~{{description}}~$LIBRARY_DESCRIPTION~g" README.md
 sed -i "s~jasny/library~jasny/$LIBRARY~g" composer.json
 sed -i 's~Jasny\\\\Library~Jasny\\\\'$(echo $LIBRARY | sed -r 's/(^|-)(\w)/\U\2/g')'~g' composer.json
+sed -i "s~Jasny skeleton library~$LIBRARY_DESCRIPTION~g" composer.json
 
 mkdir -p src tests
 composer install
@@ -22,7 +23,6 @@ cp vendor/jasny/php-code-quality/phpunit.xml.dist .
 cp vendor/jasny/php-code-quality/phpcs.xml.dist ./phpcs.xml
 cp vendor/jasny/php-code-quality/phpstan.neon.dist ./phpstan.neon
 cp vendor/jasny/php-code-quality/travis.yml.dist ./.travis.yml
-cp vendor/jasny/php-code-quality/bettercodehub.yml.dist ./.bettercodehub.yml
 
 git init
 git add .
@@ -41,9 +41,6 @@ if [ -n "$SCRUTINIZER_ACCESS_TOKEN" ] ; then
 else
   echo "Skipping scrutinizer: access token not configured"
 fi
-
-# Better code hub doesn't have an API
-$OPEN https://bettercodehub.com/repositories
 
 # Edit README
 $OPEN README.md
