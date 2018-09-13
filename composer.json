@@ -33,8 +33,8 @@
     "scripts": {
         "test": [
             "phpunit",
-            "phpcs -p src",
-            "phpstan analyse"
+            "phpstan analyse",
+            "phpcs -p src"
         ],
         "post-create-project-cmd": [
             "bash init.sh && rm init.sh"
