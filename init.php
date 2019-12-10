@@ -64,7 +64,7 @@ $trVars = [
 
 $readme = strtr(file_get_contents('README.md.dist'), $trVars);
 file_put_contents('README.md', $readme);
-unlink('README.dist');
+unlink('README.md.dist');
 
 $license = strtr(file_get_contents('LICENSE'), $trVars);
 file_put_contents('LICENSE', $license);
@@ -101,7 +101,7 @@ copy('vendor/jasny/php-code-quality/scrutinizer.yml.dist', './.scrutinizer.yml')
         'git init',
         'git add .',
         'git commit -m "Initial commit"',
-        'git create -d ' . escapeshellarg($title) . ' ' . escapeshellarg($repo),
+        'hub create -d ' . escapeshellarg($title) . ' ' . escapeshellarg($repo),
         'git push -u origin master',
     ]), $ret);
 
