@@ -19,7 +19,7 @@ set_exception_handler(function (Throwable $e) {
 
 function camelcase(string $string, string $space = ''): string
 {
-    return preg_replace_callback('/-./', fn($match) => $space . strtoupper($match[1]), ucfirst($string));
+    return preg_replace_callback('/-(.)/', fn($match) => $space . strtoupper($match[1]), ucfirst($string));
 }
 
 $vendor = getenv('PACKAGIST_VENDOR');
@@ -101,7 +101,7 @@ copy('vendor/jasny/php-code-quality/scrutinizer.yml.dist', './.scrutinizer.yml')
         'git init',
         'git add .',
         'git commit -m "Initial commit"',
-        'echo git create -d ' . escapeshellarg($title) . ' ' . escapeshellarg($repo),
+        'git create -d ' . escapeshellarg($title) . ' ' . escapeshellarg($repo),
         'git push -u origin master',
     ]), $ret);
 
@@ -110,9 +110,9 @@ copy('vendor/jasny/php-code-quality/scrutinizer.yml.dist', './.scrutinizer.yml')
 
 # Travis
 (function() {
-    system("echo travis enable --no-interactive", $ret);
+    system("travis enable --no-interactive", $ret);
 
-    if (!$ret) print_warning("Failed to enable project on Travis");
+    if ($ret > 0) print_warning("Failed to enable project on Travis");
 })();
 
 # Scrutinizer
