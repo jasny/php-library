@@ -6,8 +6,6 @@ OPEN=$(command -v xdg-open || echo 'open')
 SCRUTINIZER_ORGANIZATION=jasny
 SCRUTINIZER_GLOBAL_CONFIG=9fc4e5aa-b4a6-4b2b-b698-9a17549e1ddc
 
-echo -n "Repository description: " && read LIBRARY_DESCRIPTION
-
 mv README.md.dist README.md
 sed -i "s~{{library}}~$LIBRARY~g" README.md
 sed -i "s~{{name}}~$LIBRARY_NAME~g" README.md

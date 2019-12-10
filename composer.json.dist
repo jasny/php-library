@@ -1,0 +1,39 @@
+{
+    "name": "",
+    "description": "",
+    "license": "MIT",
+    "type": "library",
+    "authors": [],
+    "support": {
+        "issues": "",
+        "source": ""
+    },
+    "require": {
+        "php": ">=7.4.0"
+    },
+    "require-dev": {
+        "jasny/php-code-quality": "^2.6"
+    },
+    "autoload": {
+        "psr-4": {
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+        }
+    },
+    "scripts": {
+        "test": [
+            "phpstan analyse",
+            "phpunit --testdox --colors=always",
+            "phpcs -p src"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

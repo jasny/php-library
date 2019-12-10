@@ -15,29 +15,14 @@
         "source": "https://github.com/jasny/library"
     },
     "require": {
-        "php": ">=7.1.0"
+        "php": ">=7.4.0"
     },
     "require-dev": {
-        "jasny/php-code-quality": "^2.3"
-    },
-    "autoload": {
-        "psr-4": {
-            "Jasny\\Library\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Jasny\\Library\\Tests\\": "tests/"
-        }
+        "jasny/php-code-quality": "^2.6"
     },
     "scripts": {
-        "test": [
-            "phpunit",
-            "phpstan analyse",
-            "phpcs -p src"
-        ],
         "post-create-project-cmd": [
-            "bash init.sh && rm init.sh"
+            "php init.php && rm init.php"
         ]
     },
     "config": {
