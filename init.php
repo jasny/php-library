@@ -100,6 +100,7 @@ copy('vendor/jasny/php-code-quality/scrutinizer.yml.dist', './.scrutinizer.yml')
     system(join(" && ", [
         'git init',
         'git add .',
+        'git reset init.php'
         'git commit -m "Initial commit"',
         'hub create -d ' . escapeshellarg($title) . ' ' . escapeshellarg($repo),
         'git push -u origin master',
