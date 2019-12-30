@@ -17,6 +17,7 @@ set_exception_handler(function (Throwable $e) {
 });
 //----
 
+// Prepare package info
 function camelcase(string $string, string $space = ''): string
 {
     return preg_replace_callback('/-(.)/', fn($match) => $space . strtoupper($match[1]), ucfirst($string));
@@ -100,7 +101,7 @@ copy('vendor/jasny/php-code-quality/scrutinizer.yml.dist', './.scrutinizer.yml')
     system(join(" && ", [
         'git init',
         'git add .',
-        'git reset init.php'
+        'git reset init.php',
         'git commit -m "Initial commit"',
         'hub create -d ' . escapeshellarg($title) . ' ' . escapeshellarg($repo),
         'git push -u origin master',
@@ -109,14 +110,16 @@ copy('vendor/jasny/php-code-quality/scrutinizer.yml.dist', './.scrutinizer.yml')
     if ($ret > 0) throw new RuntimeException("Failed to create github repo (is hub installed?)");
 })();
 
-# Travis
+sleep(2); // Sleep, so repo on Github is ready
+
+// Travis
 (function() {
-    system("travis enable --no-interactive", $ret);
+    system("travis sync && travis enable --no-interactive", $ret);
 
     if ($ret > 0) print_warning("Failed to enable project on Travis");
 })();
 
-# Scrutinizer
+// Scrutinizer
 (function() use ($library, $vendor) {
     $accessToken = getenv('SCRUTINIZER_ACCESS_TOKEN');
     
